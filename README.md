@@ -103,12 +103,14 @@ When `content_type="tips"`, it shows some useful tips and tricks like neovim sho
 
 ### Quote
 
-When `content_type="quotes"`, it shows programming quotes that are both funny and educational.
+When `content_type="quotes"`, it shows quotes sourced from Wikiquotes. Currently quotes only work when the long or mixed display format is chosen.
 
 ![2](https://i.imgur.com/Zi0Gr2n.png)
 
-## Self promotion
+## Acknowledgments
 
-Checkout my other plugins
-[highlighturl](https://github.com/rubiin/highlighturl.nvim)
-[vimwordlist](https://github.com/rubiin/vimwordlist.nvim)
+This expansion of the quote database would not be possible without:
+
+* All the contributors to [Wikiquote](https://en.wikiquote.org/wiki/Main_Page), and the [Wikimedia Foundation](https://wikimediafoundation.org/wiki/Home).
+* [wickedQuotes](https://github.com/heyseth/wickedQuotes) by [Seth Miller](https://github.com/heyseth)
+
