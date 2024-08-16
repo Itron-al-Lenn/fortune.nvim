@@ -69,11 +69,48 @@ end
 
 local options = {
   max_width = 60,
-  display_format = "short", -- 'short', 'long', ',mixed'
+  display_format = "long", -- 'short', 'long', ',mixed'
   content_type = "quotes", -- 'quotes', 'tips', 'mixed'
   custom_quotes = {},
   custom_tips = {},
 }
+local function is_win()
+  return package.config:sub(1, 1) == "\\"
+end
+
+local function get_path_separator()
+  if is_win() then
+    return "\\"
+  end
+  return "/"
+end
+
+local function script_path()
+  local str = debug.getinfo(2, "S").source:sub(2)
+  if is_win() then
+    str = str:gsub("/", "\\")
+  end
+  return str:match("(.*" .. get_path_separator() .. ")")
+end
+
+local load_quotes = function()
+  local quotes = {}
+  quotes["long"] = {}
+  quotes["short"] = {}
+  local raw_quotes = {}
+  local quote_file = io.open(script_path() .. "quotes.json", "r")
+  if quote_file then
+    raw_quotes = vim.fn.json_decode(quote_file:read("*a"))
+    quote_file:close()
+  end
+  for author, qs in pairs(raw_quotes) do
+    for _, q in ipairs(qs) do
+      local t = { q, "", "- " .. author }
+      table.insert(quotes["long"], t)
+    end
+  end
+  return quotes
+end
 
 --- Sets up the options for the module.
 --- @param opts table|nil Optional table containing configuration options.
@@ -92,7 +129,7 @@ end
 --- @return table
 M.get_fortune = function()
   local all_list
-  local quotes = next(options.custom_quotes) and options.custom_quotes or require("fortune.quotes")
+  local quotes = next(options.custom_quotes) and options.custom_quotes or load_quotes()
   local tips = next(options.custom_tips) and options.custom_tips or require("fortune.tips")
 
   if options.content_type == "mixed" then
