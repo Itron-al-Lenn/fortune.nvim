@@ -69,7 +69,7 @@ end
 
 local options = {
   max_width = 60,
-  display_format = "long", -- 'short', 'long', ',mixed'
+  display_format = "mixed", -- 'short', 'long', ',mixed'
   content_type = "quotes", -- 'quotes', 'tips', 'mixed'
   custom_quotes = {},
   custom_tips = {},
@@ -106,7 +106,12 @@ local load_quotes = function()
   for author, qs in pairs(raw_quotes) do
     for _, q in ipairs(qs) do
       local t = { q, "", "- " .. author }
-      table.insert(quotes["long"], t)
+      local _, dots = string.gsub(q, "%.", ".")
+      if string.len(q) > options.max_width or dots > 1 then
+        table.insert(quotes["long"], t)
+      else
+        table.insert(quotes["short"], t)
+      end
     end
   end
   return quotes
