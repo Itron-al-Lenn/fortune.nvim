@@ -103,7 +103,7 @@ When `content_type="tips"`, it shows some useful tips and tricks like neovim sho
 
 ### Quote
 
-When `content_type="quotes"`, it shows quotes sourced from Wikiquotes. Currently quotes only work when the long or mixed display format is chosen.
+When `content_type="quotes"`, it shows quotes sourced from Wikiquotes.
 
 ![2](https://i.imgur.com/Zi0Gr2n.png)
 
