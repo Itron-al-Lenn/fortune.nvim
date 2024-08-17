@@ -95,24 +95,10 @@ end
 
 local load_quotes = function()
   local quotes = {}
-  quotes["long"] = {}
-  quotes["short"] = {}
-  local raw_quotes = {}
   local quote_file = io.open(script_path() .. "quotes.json", "r")
   if quote_file then
-    raw_quotes = vim.fn.json_decode(quote_file:read("*a"))
+    quotes = vim.fn.json_decode(quote_file:read("*a"))
     quote_file:close()
-  end
-  for author, qs in pairs(raw_quotes) do
-    for _, q in ipairs(qs) do
-      local t = { q, "", "- " .. author }
-      local _, dots = string.gsub(q, "%.", ".")
-      if string.len(q) > options.max_width or dots > 1 then
-        table.insert(quotes["long"], t)
-      else
-        table.insert(quotes["short"], t)
-      end
-    end
   end
   return quotes
 end
