@@ -11,21 +11,21 @@ Useful for dashboard plugins like mini.starter and dashboard.nvim
 Using [packer](https://github.com/wbthomason/packer.nvim) in lua
 
 ```lua
-use {"rubiin/fortune.nvim"}
+use {"Itron-al-Lenn/fortune.nvim"}
 ```
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim) in lua
 
 ```lua
 {
-"rubiin/fortune.nvim"
+"Itron-al-Lenn/fortune.nvim"
 }
 ```
 
 Using [vim-plug](https://github.com/junegunn/vim-plug) in vimscript
 
 ```vim
-Plug "rubiin/fortune.nvim"
+Plug "Itron-al-Lenn/fortune.nvim"
 ```
 
 ## Configuration (optional)
